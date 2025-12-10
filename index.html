@@ -241,10 +241,10 @@
     const RANGE = 5; // x,y range [-RANGE,RANGE]
     const GRID = 120; // mesh resolution
 
-    // Earth texture (prefer local copy in ./assets/, fallback will be logged if missing)
+    // Earth texture (local copy in `textures/`)
     const textureLoader = new THREE.TextureLoader();
     let earthTexture = null;
-    const earthUrl = './assets/land_ocean_ice_cloud_2048.jpg';
+    const earthUrl = 'textures/land_ocean_ice_cloud_2048.jpg';
     
     // Promise-based texture loading to ensure first round waits for texture
     const textureLoadPromise = new Promise((resolve) => {
