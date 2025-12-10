@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Point Guesser — 3D Paraboloid</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/three@0.154.0/build/three.min.js"></script>
+  <script src="https://unpkg.com/three@0.154.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>Point Guesser — Paraboloid Edition</h1>
+      <p class="subtitle">Compute z from the equation, enter the point, and see how close you are!</p>
+    </header>
+
+    <main>
+      <div id="viewer">
+        <div id="dbg" class="mono" aria-hidden="false">Initializing...</div>
+      </div>
+
+      <aside id="panel">
+        <div id="equationBox">
+          <strong>Equation:</strong>
+          <div id="equation" class="mono">z = </div>
+        </div>
+
+        <div id="targetBox">
+          <strong>Target x,y (given):</strong>
+          <div id="targetXY" class="mono">x = 0, y = 0</div>
+        </div>
+
+        <div id="inputs">
+          <label>Enter x: <input id="inpX" type="number" step="any"></label>
+          <label>Enter y: <input id="inpY" type="number" step="any"></label>
+          <label>Enter z: <input id="inpZ" type="number" step="any"></label>
+        </div>
+
+        <div id="buttons">
+          <button id="submitBtn">Submit Guess</button>
+        </div>
+
+        <div id="result" class="hidden">
+          <h3>Result</h3>
+          <div id="score"></div>
+          <div id="reveal"></div>
+        </div>
+
+        <footer>
+          <small>Textures courtesy of public domain Earth imagery (via remote CDN).</small>
+        </footer>
+      </aside>
+    </main>
+  </div>
+
+  <!-- Result Modal Popup (GeoGuessr style) -->
+  <div id="modalOverlay" class="hidden"></div>
+  <div id="resultModal" class="hidden">
+    <div class="modalCard">
+      <div class="roundHeader">
+        <h2 id="roundTitle">Round 1 of 3</h2>
+        <div class="distanceInfo">
+          <p id="distanceText">Distance: 0.00 units</p>
+        </div>
+      </div>
+      
+      <div class="scoreContainer">
+        <div class="scoreLabel">Points</div>
+        <div class="scoreBarBg">
+          <div class="scoreBarFill" id="scoreBarFill" style="width: 0%"></div>
+        </div>
+        <div class="scoreText" id="scoreText">0 / 33.3</div>
+      </div>
+
+      <div class="resultDetails">
+        <p><strong>Your guess:</strong> <span id="guessCoords">x=0, y=0, z=0</span></p>
+        <p><strong>Correct answer:</strong> <span id="correctCoords">x=0, y=0, z=0</span></p>
+      </div>
+
+      <div class="totalScore">
+        <p id="totalScoreText">Total Score: 0 / 100</p>
+      </div>
+
+      <div class="modalButtons">
+        <button id="nextRoundBtn" class="greenBtn">Next Round</button>
+        <button id="endGameBtn" class="grayBtn hidden">Next Game</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
